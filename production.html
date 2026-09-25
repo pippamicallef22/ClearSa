@@ -1,0 +1,1290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0aa7b2">
+<title>CLEARSA Staff Hub</title>
+
+<style>
+:root{
+ --teal:#0aa7b2;--dark:#087d87;--navy:#25363b;
+ --ink:#243238;--muted:#718084;--bg:#f3f7f7;
+ --white:#fff;--line:#dce6e6;--red:#d64545;
+ --orange:#ed8a31;--green:#65b947;
+}
+*{box-sizing:border-box}
+body{
+ margin:0;background:#dfe8e8;color:var(--ink);
+ font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.app{
+ max-width:520px;margin:auto;min-height:100vh;
+ background:var(--bg);padding-bottom:85px;
+}
+header{
+ background:#fff;padding:15px 18px;border-bottom:1px solid var(--line);
+ display:flex;align-items:center;justify-content:space-between;
+}
+.brand{font-weight:900;letter-spacing:.1em}
+.brand small{
+ display:block;font-size:8px;color:var(--muted);
+ letter-spacing:.12em;
+}
+.logo{color:var(--teal);font-size:25px}
+.page{display:none;padding:18px}
+.page.on{display:block}
+.hidden{display:none!important}
+
+.hero{
+ background:linear-gradient(135deg,var(--navy),var(--dark));
+ color:white;border-radius:22px;padding:23px;margin-bottom:15px;
+}
+.hero h1{margin:4px 0 7px;font-size:28px}
+.hero p{margin:0;opacity:.85}
+.eyebrow{
+ font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+ opacity:.75;
+}
+
+.card{
+ background:white;border-radius:18px;padding:16px;
+ margin-bottom:11px;
+ box-shadow:0 7px 22px rgba(30,55,60,.08);
+}
+.title{font-weight:850}
+.sub{font-size:12px;color:var(--muted);margin-top:4px}
+h2{font-size:20px}
+.btn{
+ border:0;border-radius:13px;padding:13px;
+ width:100%;margin-top:10px;font-weight:850;
+}
+.primary{background:var(--teal);color:white}
+.dark{background:var(--navy);color:white}
+.soft{background:#edf5f5;color:var(--ink)}
+.danger{background:var(--red);color:white}
+
+label{
+ display:block;font-size:12px;font-weight:800;
+ margin:13px 0 5px;
+}
+input,select,textarea{
+ width:100%;padding:12px;border:1px solid var(--line);
+ border-radius:12px;background:white;
+}
+textarea{min-height:90px}
+
+.grid2{
+ display:grid;grid-template-columns:1fr 1fr;gap:9px;
+}
+.stat strong{display:block;font-size:26px}
+.stat span{font-size:11px;color:var(--muted)}
+
+.quick{
+ display:grid;grid-template-columns:1fr 1fr;gap:9px;
+}
+.quick .card{
+ text-align:center;margin:0;padding:18px 8px;
+}
+.icon{font-size:27px}
+
+.pill{
+ display:inline-block;border-radius:99px;padding:5px 8px;
+ font-size:10px;font-weight:850;margin-top:7px;
+}
+.urgent{background:#ffe4e4;color:#a61f1f}
+.important{background:#fff0df;color:#984a00}
+.normal{background:#e5f7f8;color:#08717a}
+.done{background:#e8f6e4;color:#347126}
+
+.nav{
+ position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+ width:100%;max-width:520px;height:72px;background:white;
+ border-top:1px solid var(--line);
+ display:grid;grid-template-columns:repeat(5,1fr);
+}
+.nav button{
+ border:0;background:white;color:#758387;
+ font-size:10px;font-weight:750;
+}
+.nav b{display:block;font-size:19px}
+.nav .active{color:var(--dark)}
+
+.login{padding-top:50px}
+.bigbrand{
+ text-align:center;font-size:32px;font-weight:950;
+ letter-spacing:.11em;
+}
+.tag{text-align:center;color:var(--muted);margin:5px 0 28px}
+
+.notice{
+ background:#fff8d9;border:1px solid #efdf91;
+ padding:11px;border-radius:12px;font-size:12px;
+ margin-top:12px;
+}
+
+.clock{
+ font-size:40px;font-weight:900;text-align:center;
+}
+.clockbutton{
+ width:150px;height:150px;border-radius:50%;
+ margin:18px auto;display:block;border:9px solid #d9eff1;
+ background:var(--teal);color:white;font-weight:900;
+}
+.check{
+ display:flex;gap:8px;align-items:flex-start;margin:10px 0;
+}
+.check input{width:auto}
+.row{display:flex;gap:10px}
+.dot{
+ width:11px;height:11px;background:var(--teal);
+ border-radius:50%;margin-top:6px;flex:none;
+}
+.red{background:var(--red)}
+.orange{background:var(--orange)}
+.logout{
+ border:0;border-radius:10px;background:#edf4f4;
+ padding:8px;font-weight:750;
+}
+.toast{
+ position:fixed;bottom:88px;left:50%;
+ transform:translateX(-50%);
+ background:var(--navy);color:white;
+ padding:11px 15px;border-radius:12px;
+ display:none;z-index:99;text-align:center;
+ width:max-content;max-width:90%;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header id="header" class="hidden">
+ <div style="display:flex;gap:8px;align-items:center">
+  <span class="logo">▶</span>
+  <div class="brand">
+   CLEARSA
+   <small>CLEAR CORPORATE SOLUTIONS AUSTRALIA</small>
+  </div>
+ </div>
+ <button class="logout" onclick="logout()">Log out</button>
+</header>
+
+
+<!-- LOGIN -->
+
+<section id="login" class="page on login">
+
+<div class="bigbrand">CLEARSA</div>
+<div class="tag">Staff & Operations Hub</div>
+
+<div class="card">
+
+<div class="title">Welcome</div>
+<div class="sub">Production prototype login</div>
+
+<label>Employee name</label>
+<input id="employeeName" value="Sarah">
+
+<button class="btn primary" onclick="login('staff')">
+EMPLOYEE LOGIN
+</button>
+
+<button class="btn dark" onclick="login('owner')">
+SONIA — OWNER LOGIN
+</button>
+
+<div class="notice">
+This prototype demonstrates the complete CLEARSA workflow.
+Secure individual accounts and the shared company database
+will replace this demo login before real employee data is used.
+</div>
+
+</div>
+</section>
+
+
+<!-- STAFF HOME -->
+
+<section id="staffHome" class="page">
+
+<div class="hero">
+<div class="eyebrow">EMPLOYEE</div>
+<h1 id="hello">Hi, Sarah 👋</h1>
+<p>Your jobs and tools for today.</p>
+</div>
+
+<div class="card">
+<div class="eyebrow" style="color:var(--dark)">NEXT JOB</div>
+<div class="title" style="font-size:20px;margin-top:5px">
+North Lakes Office
+</div>
+<div class="sub">5:30 PM – 8:30 PM</div>
+
+<button class="btn primary" onclick="go('clock')">
+CLOCK IN / OUT
+</button>
+</div>
+
+<h2>Quick Actions</h2>
+
+<div class="quick">
+
+<div class="card" onclick="go('finish')">
+<div class="icon">📸</div>
+<div class="title">Finished Clean</div>
+</div>
+
+<div class="card" onclick="go('report')">
+<div class="icon">⚠️</div>
+<div class="title">Report Problem</div>
+</div>
+
+<div class="card" onclick="go('equipment')">
+<div class="icon">🔧</div>
+<div class="title">Equipment</div>
+</div>
+
+<div class="card" onclick="go('supplies')">
+<div class="icon">🧴</div>
+<div class="title">Request Supplies</div>
+</div>
+
+<div class="card" onclick="go('note')">
+<div class="icon">💬</div>
+<div class="title">Note for Sonia</div>
+</div>
+
+<div class="card" onclick="go('myhours')">
+<div class="icon">◷</div>
+<div class="title">My Hours</div>
+</div>
+
+</div>
+
+<h2>Today's Sites</h2>
+
+<div class="card">
+<div class="title">North Lakes Office</div>
+<div class="sub">5:30 PM – 8:30 PM</div>
+<span class="pill normal">UPCOMING</span>
+</div>
+
+<div class="card">
+<div class="title">Brendale Warehouse</div>
+<div class="sub">9:00 PM – 10:30 PM</div>
+<span class="pill normal">UPCOMING</span>
+</div>
+
+</section>
+
+
+<!-- JOBS -->
+
+<section id="jobs" class="page">
+
+<h2>My Jobs</h2>
+
+<div class="card">
+
+<div class="title">North Lakes Office</div>
+<div class="sub">Today • 5:30 PM – 8:30 PM</div>
+
+<h3>Cleaning Checklist</h3>
+
+<label class="check">
+<input type="checkbox"> Reception & entry
+</label>
+
+<label class="check">
+<input type="checkbox"> Bathrooms cleaned & restocked
+</label>
+
+<label class="check">
+<input type="checkbox"> Kitchen / staff room
+</label>
+
+<label class="check">
+<input type="checkbox"> Vacuum floors
+</label>
+
+<label class="check">
+<input type="checkbox"> Mop required areas
+</label>
+
+<label class="check">
+<input type="checkbox"> Empty bins
+</label>
+
+<div class="notice">
+<b>Site instructions</b><br>
+Secure access instructions and site-specific cleaning notes
+will appear here only for employees assigned to this site.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CLOCK -->
+
+<section id="clock" class="page">
+
+<h2>Work Hours</h2>
+
+<div class="card">
+
+<div id="currentTime" class="clock">--:--</div>
+
+<label>Site</label>
+
+<select>
+<option>North Lakes Office</option>
+<option>Brendale Warehouse</option>
+</select>
+
+<button id="clockBtn"
+class="clockbutton"
+onclick="toggleClock()">
+CLOCK IN
+</button>
+
+<div id="clockStatus"
+class="sub"
+style="text-align:center">
+Currently clocked out.
+</div>
+
+<button class="btn soft"
+onclick="showToast('Manual time entry submitted for Sonia review ✓')">
++ MANUAL TIME ENTRY
+</button>
+
+</div>
+
+</section>
+
+
+<!-- FINISHED CLEAN -->
+
+<section id="finish" class="page">
+
+<h2>Finished Clean</h2>
+
+<div class="card">
+
+<label>Site</label>
+
+<select>
+<option>North Lakes Office</option>
+<option>Brendale Warehouse</option>
+</select>
+
+<label>Completion Photos</label>
+
+<input type="file"
+accept="image/*"
+multiple>
+
+<label>Optional Note</label>
+
+<textarea
+placeholder="Anything Sonia should know?"></textarea>
+
+<button class="btn primary"
+onclick="showToast('Clean completion recorded ✓');go('staffHome')">
+SUBMIT COMPLETION
+</button>
+
+</div>
+
+</section>
+
+
+<!-- REPORT -->
+
+<section id="report" class="page">
+
+<h2>Report a Problem</h2>
+
+<div class="card">
+
+<label>Site</label>
+
+<select>
+<option>North Lakes Office</option>
+<option>Brendale Warehouse</option>
+<option>Albany Creek Medical</option>
+</select>
+
+<label>Problem Type</label>
+
+<select>
+<option>Access problem</option>
+<option>Safety issue</option>
+<option>Site issue</option>
+<option>Client request</option>
+<option>Staffing issue</option>
+<option>Other</option>
+</select>
+
+<label>What happened?</label>
+
+<textarea
+placeholder="Describe the problem"></textarea>
+
+<label>Photo</label>
+
+<input type="file"
+accept="image/*">
+
+<label>Priority</label>
+
+<select id="priority">
+<option>Normal</option>
+<option>Important</option>
+<option>Urgent</option>
+</select>
+
+<button class="btn primary"
+onclick="submitProblem()">
+SEND TO SONIA
+</button>
+
+</div>
+
+</section>
+
+
+<!-- EQUIPMENT -->
+
+<section id="equipment" class="page">
+
+<h2>Equipment Issue</h2>
+
+<div class="card">
+
+<label>Site</label>
+
+<select>
+<option>North Lakes Office</option>
+<option>Brendale Warehouse</option>
+</select>
+
+<label>Equipment</label>
+
+<input placeholder="e.g. Backpack vacuum">
+
+<label>Describe the problem</label>
+
+<textarea
+placeholder="Fault, damage or problem"></textarea>
+
+<label>Photo</label>
+
+<input type="file"
+accept="image/*">
+
+<label>Priority</label>
+
+<select>
+<option>Normal</option>
+<option>Important</option>
+<option>Urgent — cannot complete clean</option>
+</select>
+
+<button class="btn primary"
+onclick="showToast('Equipment issue sent to Sonia ✓');go('staffHome')">
+REPORT EQUIPMENT
+</button>
+
+</div>
+
+</section>
+
+
+<!-- SUPPLIES -->
+
+<section id="supplies" class="page">
+
+<h2>Request Supplies</h2>
+
+<div class="card">
+
+<label>Site</label>
+
+<select>
+<option>North Lakes Office</option>
+<option>Brendale Warehouse</option>
+<option>Albany Creek Medical</option>
+</select>
+
+<label>Supply Item</label>
+
+<select>
+<option>Toilet paper</option>
+<option>Paper towel</option>
+<option>Hand soap</option>
+<option>Garbage bags</option>
+<option>Gloves</option>
+<option>Cleaning chemical</option>
+<option>Cleaning cloths</option>
+<option>Mop head</option>
+<option>Other</option>
+</select>
+
+<label>Quantity</label>
+
+<input type="number"
+min="1"
+value="1">
+
+<label>Comment</label>
+
+<textarea
+placeholder="Size, product or other details"></textarea>
+
+<label class="check">
+<input id="urgentSupply"
+type="checkbox">
+Urgent — needed to complete cleaning
+</label>
+
+<button class="btn primary"
+onclick="submitSupply()">
+SEND SUPPLY REQUEST
+</button>
+
+<div class="notice">
+Normal requests are compiled into Sonia's weekly supply list.
+Urgent requests also go immediately to the top of Sonia's
+Priority List.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- NOTE -->
+
+<section id="note" class="page">
+
+<h2>Note for Sonia</h2>
+
+<div class="card">
+
+<label>Site</label>
+
+<select>
+<option>General</option>
+<option>North Lakes Office</option>
+<option>Brendale Warehouse</option>
+</select>
+
+<label>Note</label>
+
+<textarea
+placeholder="Write your message"></textarea>
+
+<label>Priority</label>
+
+<select>
+<option>Normal</option>
+<option>Important</option>
+<option>Urgent</option>
+</select>
+
+<button class="btn primary"
+onclick="showToast('Note sent to Sonia ✓');go('staffHome')">
+SEND NOTE
+</button>
+
+</div>
+
+</section>
+
+
+<!-- STAFF HOURS -->
+
+<section id="myhours" class="page">
+
+<h2>My Hours</h2>
+
+<div class="grid2">
+
+<div class="card stat">
+<strong>3.0</strong>
+<span>Today</span>
+</div>
+
+<div class="card stat">
+<strong>46.5</strong>
+<span>This fortnight</span>
+</div>
+
+</div>
+
+<div class="card">
+<div class="title">North Lakes Office</div>
+<div class="sub">
+Yesterday • 5:31 PM – 8:29 PM
+</div>
+<b>2.97 hrs</b>
+</div>
+
+<div class="card">
+<div class="title">Brendale Warehouse</div>
+<div class="sub">
+Yesterday • 9:02 PM – 10:31 PM
+</div>
+<b>1.48 hrs</b>
+</div>
+
+</section>
+
+
+<!-- SONIA HOME -->
+
+<section id="ownerHome" class="page">
+
+<div class="hero">
+
+<div class="eyebrow">OWNER DASHBOARD</div>
+
+<h1>Good morning, Sonia 👋</h1>
+
+<p>Your business priorities in one place.</p>
+
+</div>
+
+<div class="grid2">
+
+<div class="card stat">
+<strong>2</strong>
+<span>Urgent issues</span>
+</div>
+
+<div class="card stat">
+<strong>38</strong>
+<span>Staff scheduled</span>
+</div>
+
+<div class="card stat">
+<strong>27</strong>
+<span>Sites today</span>
+</div>
+
+<div class="card stat">
+<strong>4</strong>
+<span>Timesheets to review</span>
+</div>
+
+</div>
+
+<h2>🔥 Sonia's Priority List</h2>
+
+<div id="priorityList">
+
+<div class="card row">
+
+<div class="dot red"></div>
+
+<div style="width:100%">
+
+<div class="title">
+Unable to access building
+</div>
+
+<div>Albany Creek Medical</div>
+
+<div class="sub">
+Sarah • 6:04 PM
+</div>
+
+<span class="pill urgent">
+🚨 URGENT
+</span>
+
+<button class="btn soft"
+onclick="resolve(this)">
+ACKNOWLEDGE / RESOLVE
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card row">
+
+<div class="dot red"></div>
+
+<div style="width:100%">
+
+<div class="title">
+Vacuum motor failure
+</div>
+
+<div>North Lakes Office</div>
+
+<div class="sub">
+James • 5:48 PM
+</div>
+
+<span class="pill urgent">
+🚨 URGENT
+</span>
+
+<button class="btn soft"
+onclick="resolve(this)">
+ACKNOWLEDGE / RESOLVE
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card row">
+
+<div class="dot orange"></div>
+
+<div>
+
+<div class="title">
+Supply request pending
+</div>
+
+<div>Brendale Warehouse</div>
+
+<div class="sub">
+3 requested items
+</div>
+
+<span class="pill important">
+IMPORTANT
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SONIA OPERATIONS -->
+
+<section id="operations" class="page">
+
+<h2>Today's Operations</h2>
+
+<div class="grid2">
+
+<div class="card stat">
+<strong>38</strong>
+<span>Staff scheduled</span>
+</div>
+
+<div class="card stat">
+<strong>27</strong>
+<span>Sites serviced</span>
+</div>
+
+<div class="card stat">
+<strong>3</strong>
+<span>Not started</span>
+</div>
+
+<div class="card stat">
+<strong>2</strong>
+<span>Missing clock-outs</span>
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="title">
+Staff & Site Management
+</div>
+
+<div class="sub">
+Designed for approximately 45 cleaners across
+30 client sites, with flexible recurring or
+one-off site allocations.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SONIA HOURS -->
+
+<section id="ownerHours" class="page">
+
+<h2>Timesheets</h2>
+
+<div class="card">
+
+<div class="title">
+Fortnightly Payroll Review
+</div>
+
+<div class="sub">
+Clock records and manual entries appear here
+for Sonia's approval.
+</div>
+
+<div class="notice">
+Timesheet corrections retain the original entry
+and create an audit record rather than silently
+overwriting payroll history.
+</div>
+
+<button class="btn primary"
+onclick="showToast('Approved payroll export created — demo ✓')">
+EXPORT APPROVED HOURS
+</button>
+
+</div>
+
+<div class="card">
+
+<div class="title">
+4 entries require review
+</div>
+
+<span class="pill important">
+REVIEW
+</span>
+
+</div>
+
+</section>
+
+
+<!-- OWNER SUPPLIES -->
+
+<section id="ownerSupplies" class="page">
+
+<h2>Supplies</h2>
+
+<div class="card">
+
+<div class="title">
+Weekly Supplies Digest
+</div>
+
+<div class="sub">
+Recipient: sonia@clearsa.example
+</div>
+
+<p>
+Outstanding employee supply requests are
+automatically grouped by client site.
+</p>
+
+<button class="btn primary"
+onclick="showToast('Weekly supply email compiled — demo ✓')">
+PREVIEW WEEKLY EMAIL
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="title">
+North Lakes Office
+</div>
+
+<p>
+Toilet paper × 2 cartons<br>
+Hand soap × 3<br>
+Garbage bags × 1 box
+</p>
+
+<span class="pill important">
+OUTSTANDING
+</span>
+
+</div>
+
+
+<div class="card">
+
+<div class="title">
+Brendale Warehouse
+</div>
+
+<p>
+Gloves × 2 boxes<br>
+Mop head × 1
+</p>
+
+<span class="pill important">
+OUTSTANDING
+</span>
+
+</div>
+
+</section>
+
+
+<!-- OWNER MORE -->
+
+<section id="ownerMore" class="page">
+
+<h2>Management</h2>
+
+<div class="card">
+<div class="title">👥 Staff</div>
+<div class="sub">
+45 employee accounts, site allocations and permissions
+</div>
+</div>
+
+<div class="card">
+<div class="title">🏢 Sites</div>
+<div class="sub">
+30 sites, schedules, checklists and instructions
+</div>
+</div>
+
+<div class="card">
+<div class="title">🔧 Equipment</div>
+<div class="sub">
+Equipment faults, status and repair history
+</div>
+</div>
+
+<div class="card">
+<div class="title">📸 Reports & Photos</div>
+<div class="sub">
+Completion evidence and site reports
+</div>
+</div>
+
+<div class="card">
+<div class="title">📚 History & Audit Log</div>
+<div class="sub">
+Resolved issues and retained payroll changes
+</div>
+</div>
+
+</section>
+
+
+<!-- STAFF NAV -->
+
+<nav id="staffNav" class="nav hidden">
+
+<button class="active"
+onclick="go('staffHome',this)">
+<b>⌂</b>HOME
+</button>
+
+<button onclick="go('jobs',this)">
+<b>▦</b>JOBS
+</button>
+
+<button onclick="go('report',this)">
+<b>＋</b>REPORT
+</button>
+
+<button onclick="go('clock',this)">
+<b>◷</b>HOURS
+</button>
+
+<button onclick="go('supplies',this)">
+<b>🧴</b>SUPPLIES
+</button>
+
+</nav>
+
+
+<!-- OWNER NAV -->
+
+<nav id="ownerNav" class="nav hidden">
+
+<button class="active"
+onclick="go('ownerHome',this)">
+<b>⌂</b>HOME
+</button>
+
+<button onclick="go('operations',this)">
+<b>▦</b>OPS
+</button>
+
+<button onclick="go('ownerHours',this)">
+<b>◷</b>HOURS
+</button>
+
+<button onclick="go('ownerSupplies',this)">
+<b>🧴</b>SUPPLIES
+</button>
+
+<button onclick="go('ownerMore',this)">
+<b>•••</b>MORE
+</button>
+
+</nav>
+
+
+<div id="toast" class="toast"></div>
+
+</div>
+
+
+<script>
+
+let role=null;
+let clocked=false;
+
+function login(type){
+
+ role=type;
+
+ document
+ .getElementById("login")
+ .classList.remove("on");
+
+ document
+ .getElementById("header")
+ .classList.remove("hidden");
+
+ if(type==="staff"){
+
+  let name=
+  document.getElementById("employeeName").value.trim()
+  ||"Employee";
+
+  document.getElementById("hello").textContent=
+  "Hi, "+name+" 👋";
+
+  document
+  .getElementById("staffNav")
+  .classList.remove("hidden");
+
+  go("staffHome");
+
+ }else{
+
+  document
+  .getElementById("ownerNav")
+  .classList.remove("hidden");
+
+  go("ownerHome");
+
+ }
+
+}
+
+
+function logout(){
+
+ role=null;
+
+ document.querySelectorAll(".page")
+ .forEach(p=>p.classList.remove("on"));
+
+ document.querySelectorAll(".nav")
+ .forEach(n=>n.classList.add("hidden"));
+
+ document
+ .getElementById("header")
+ .classList.add("hidden");
+
+ document
+ .getElementById("login")
+ .classList.add("on");
+
+}
+
+
+function go(id,button){
+
+ document.querySelectorAll(".page")
+ .forEach(p=>p.classList.remove("on"));
+
+ document
+ .getElementById(id)
+ .classList.add("on");
+
+ if(button){
+
+  button.parentElement
+  .querySelectorAll("button")
+  .forEach(b=>b.classList.remove("active"));
+
+  button.classList.add("active");
+
+ }
+
+ window.scrollTo(0,0);
+
+}
+
+
+function updateTime(){
+
+ let now=new Date();
+
+ let time=now.toLocaleTimeString(
+ "en-AU",
+ {
+  hour:"2-digit",
+  minute:"2-digit"
+ }
+ );
+
+ let el=document.getElementById("currentTime");
+
+ if(el) el.textContent=time;
+
+}
+
+setInterval(updateTime,1000);
+updateTime();
+
+
+function toggleClock(){
+
+ clocked=!clocked;
+
+ let button=
+ document.getElementById("clockBtn");
+
+ let status=
+ document.getElementById("clockStatus");
+
+ if(clocked){
+
+  button.textContent="CLOCK OUT";
+
+  button.style.background="var(--red)";
+
+  status.textContent=
+  "Clocked in. Start time recorded.";
+
+  showToast("Shift started ✓");
+
+ }else{
+
+  button.textContent="CLOCK IN";
+
+  button.style.background="var(--teal)";
+
+  status.textContent=
+  "Shift saved. Currently clocked out.";
+
+  showToast("Shift finished ✓");
+
+ }
+
+}
+
+
+function submitProblem(){
+
+ let priority=
+ document.getElementById("priority").value;
+
+ if(priority==="Urgent"){
+
+  showToast(
+  "🚨 Urgent report sent and moved to the top of Sonia's list"
+  );
+
+ }else if(priority==="Important"){
+
+  showToast(
+  "⚠️ Important report sent to Sonia"
+  );
+
+ }else{
+
+  showToast(
+  "Report sent to Sonia ✓"
+  );
+
+ }
+
+ go("staffHome");
+
+}
+
+
+function submitSupply(){
+
+ let urgent=
+ document.getElementById("urgentSupply").checked;
+
+ if(urgent){
+
+  showToast(
+  "🚨 Added to Sonia's Priority List and weekly supplies digest"
+  );
+
+ }else{
+
+  showToast(
+  "Supply request added to Sonia's weekly digest ✓"
+  );
+
+ }
+
+ go("staffHome");
+
+}
+
+
+function resolve(button){
+
+ let card=
+ button.closest(".card");
+
+ card.innerHTML=
+ '<div style="width:100%">'+
+ '<div class="title" style="color:#347126">'+
+ '✓ Resolved'+
+ '</div>'+
+ '<div class="sub">'+
+ 'Retained in CLEARSA history and audit log.'+
+ '</div>'+
+ '</div>';
+
+}
+
+
+function showToast(message){
+
+ let toast=
+ document.getElementById("toast");
+
+ toast.textContent=message;
+
+ toast.style.display="block";
+
+ clearTimeout(window.toastTimer);
+
+ window.toastTimer=setTimeout(
+ ()=>toast.style.display="none",
+ 2700
+ );
+
+}
+
+</script>
+
+</body>
+</html>
