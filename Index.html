@@ -1,0 +1,1395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10aab4">
+<title>CLEARSA Staff Hub</title>
+
+<style>
+:root{
+  --teal:#11aab5;
+  --teal-dark:#087b86;
+  --green:#65b947;
+  --lime:#c8d91b;
+  --navy:#26353a;
+  --ink:#263238;
+  --muted:#748186;
+  --bg:#f3f7f7;
+  --paper:#ffffff;
+  --line:#dce5e5;
+  --red:#d94747;
+  --orange:#ef8c32;
+  --yellow:#e4b735;
+  --shadow:0 8px 28px rgba(23,49,54,.09);
+}
+
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  padding:0;
+  background:#dfe7e7;
+  color:var(--ink);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+button,input,textarea,select{
+  font:inherit;
+}
+
+button{cursor:pointer}
+
+.app{
+  max-width:520px;
+  margin:auto;
+  min-height:100vh;
+  background:var(--bg);
+  padding-bottom:92px;
+}
+
+/* HEADER */
+.header{
+  background:white;
+  padding:18px 20px 16px;
+  border-bottom:1px solid var(--line);
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.logoRow{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.mark{
+  width:44px;
+  height:44px;
+  position:relative;
+}
+
+.tri{
+  position:absolute;
+  width:0;
+  height:0;
+  border-top:20px solid transparent;
+  border-bottom:20px solid transparent;
+  border-left:35px solid var(--teal);
+  left:2px;
+  top:2px;
+}
+
+.tri2{
+  position:absolute;
+  width:0;
+  height:0;
+  border-top:13px solid transparent;
+  border-bottom:13px solid transparent;
+  border-left:23px solid var(--green);
+  left:13px;
+  top:9px;
+}
+
+.tri3{
+  position:absolute;
+  width:0;
+  height:0;
+  border-top:7px solid transparent;
+  border-bottom:7px solid transparent;
+  border-left:13px solid var(--lime);
+  left:24px;
+  top:15px;
+}
+
+.brand{
+  font-size:21px;
+  font-weight:800;
+  letter-spacing:.08em;
+}
+
+.brand small{
+  display:block;
+  font-size:9px;
+  letter-spacing:.13em;
+  font-weight:600;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+/* PAGES */
+.page{
+  display:none;
+  padding:18px;
+}
+
+.page.active{display:block}
+
+.ownerHero{
+  background:linear-gradient(135deg,var(--navy),var(--teal-dark));
+  color:white;
+  border-radius:22px;
+  padding:24px;
+  box-shadow:var(--shadow);
+  margin-bottom:18px;
+}
+
+.ownerHero .tiny{
+  opacity:.75;
+  font-size:12px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+.ownerHero h1{
+  margin:5px 0 6px;
+  font-size:29px;
+}
+
+.ownerHero p{
+  margin:0;
+  opacity:.9;
+  line-height:1.45;
+}
+
+h2{
+  font-size:19px;
+  margin:22px 2px 12px;
+}
+
+.card{
+  background:var(--paper);
+  border-radius:18px;
+  padding:17px;
+  margin-bottom:12px;
+  box-shadow:var(--shadow);
+  border:1px solid #edf1f1;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.stat{
+  background:white;
+  padding:16px;
+  border-radius:17px;
+  box-shadow:var(--shadow);
+}
+
+.stat strong{
+  font-size:27px;
+  display:block;
+}
+
+.stat span{
+  font-size:12px;
+  color:var(--muted);
+}
+
+/* PRIORITIES */
+.priority{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+
+.dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  margin-top:6px;
+  flex:0 0 auto;
+}
+
+.urgent .dot{background:var(--red)}
+.important .dot{background:var(--orange)}
+.action .dot{background:var(--yellow)}
+.info .dot{background:var(--teal)}
+
+.priorityText{flex:1}
+
+.priorityTitle{
+  font-weight:800;
+  margin-bottom:3px;
+}
+
+.meta{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.badge{
+  display:inline-block;
+  border-radius:100px;
+  padding:5px 9px;
+  font-size:10px;
+  font-weight:800;
+  margin-top:8px;
+}
+
+.badge.urgent{
+  background:#ffe7e7;
+  color:#a61f1f;
+}
+
+.badge.important{
+  background:#fff0df;
+  color:#9b4b00;
+}
+
+.badge.action{
+  background:#fff8d8;
+  color:#755d00;
+}
+
+.badge.info{
+  background:#e3f8fa;
+  color:#08737c;
+}
+
+/* BUTTONS */
+.btn{
+  width:100%;
+  border:none;
+  border-radius:14px;
+  padding:14px 16px;
+  font-weight:800;
+  margin-top:10px;
+}
+
+.primary{
+  background:var(--teal);
+  color:white;
+}
+
+.dark{
+  background:var(--navy);
+  color:white;
+}
+
+.outline{
+  background:white;
+  border:1px solid var(--line);
+  color:var(--ink);
+}
+
+.resolve{
+  width:auto;
+  padding:8px 12px;
+  margin:8px 0 0;
+  background:#eaf7e6;
+  color:#347126;
+  font-size:12px;
+}
+
+/* FORMS */
+label{
+  display:block;
+  font-size:12px;
+  font-weight:800;
+  color:#58666a;
+  margin:15px 0 6px;
+}
+
+input,textarea,select{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:13px;
+  background:white;
+  color:var(--ink);
+}
+
+textarea{
+  min-height:105px;
+  resize:vertical;
+}
+
+.priorityChoice{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+}
+
+.pChoice{
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:10px 5px;
+  text-align:center;
+  background:white;
+  font-size:11px;
+  font-weight:800;
+}
+
+.pChoice.selected{
+  outline:2px solid var(--teal);
+  background:#e9fafb;
+}
+
+/* CLOCK */
+.clockBox{
+  text-align:center;
+  padding:25px 15px;
+}
+
+.time{
+  font-size:40px;
+  font-weight:800;
+}
+
+.clockButton{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  border:9px solid #d9f0f1;
+  background:var(--teal);
+  color:white;
+  font-size:20px;
+  font-weight:900;
+  margin:18px auto;
+  display:block;
+  box-shadow:0 12px 25px rgba(17,170,181,.25);
+}
+
+.clockButton.out{
+  background:var(--red);
+  border-color:#f5dada;
+}
+
+/* SITE */
+.siteTitle{
+  font-weight:800;
+  font-size:16px;
+}
+
+.siteSub{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:4px;
+}
+
+/* BOTTOM NAV */
+.nav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  max-width:520px;
+  width:100%;
+  height:76px;
+  background:white;
+  border-top:1px solid var(--line);
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  z-index:50;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+
+.navBtn{
+  border:0;
+  background:none;
+  color:#778488;
+  font-size:10px;
+  font-weight:700;
+}
+
+.navBtn .ico{
+  display:block;
+  font-size:21px;
+  margin-bottom:3px;
+}
+
+.navBtn.active{
+  color:var(--teal-dark);
+}
+
+.plus{
+  width:49px;
+  height:49px;
+  border-radius:50%;
+  background:var(--teal);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  margin:-13px auto 2px;
+  box-shadow:0 5px 16px rgba(0,0,0,.18);
+}
+
+.segment{
+  display:flex;
+  background:#e8eeee;
+  border-radius:12px;
+  padding:4px;
+  margin-bottom:15px;
+}
+
+.segment button{
+  flex:1;
+  border:0;
+  padding:9px;
+  border-radius:9px;
+  background:transparent;
+  font-weight:700;
+}
+
+.segment button.on{
+  background:white;
+  box-shadow:0 2px 8px #00000012;
+}
+
+.empty{
+  text-align:center;
+  color:var(--muted);
+  padding:28px 10px;
+}
+
+.photoPreview{
+  width:100%;
+  max-height:220px;
+  object-fit:cover;
+  border-radius:12px;
+  margin-top:10px;
+  display:none;
+}
+
+.smallBtn{
+  border:0;
+  background:#edf4f4;
+  border-radius:9px;
+  padding:7px 9px;
+  font-size:11px;
+  font-weight:700;
+}
+
+.hidden{display:none!important}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="header">
+  <div class="logoRow">
+    <div class="mark">
+      <div class="tri"></div>
+      <div class="tri2"></div>
+      <div class="tri3"></div>
+    </div>
+
+    <div class="brand">
+      CLEARSA
+      <small>CLEAR CORPORATE SOLUTIONS AUSTRALIA</small>
+    </div>
+  </div>
+</header>
+
+<!-- HOME -->
+<section id="home" class="page active">
+
+  <div class="segment">
+    <button id="ownerModeBtn" class="on" onclick="setMode('owner')">SONIA</button>
+    <button id="staffModeBtn" onclick="setMode('staff')">STAFF</button>
+  </div>
+
+  <div id="ownerHome">
+
+    <div class="ownerHero">
+      <div class="tiny">Owner Dashboard</div>
+      <h1>Good morning, Sonia 👋</h1>
+      <p id="dateText"></p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <strong id="urgentCount">0</strong>
+        <span>Urgent issues</span>
+      </div>
+
+      <div class="stat">
+        <strong id="openCount">0</strong>
+        <span>Open priorities</span>
+      </div>
+
+      <div class="stat">
+        <strong id="hoursCount">0</strong>
+        <span>Hours logged</span>
+      </div>
+
+      <div class="stat">
+        <strong id="reportCount">0</strong>
+        <span>Reports</span>
+      </div>
+    </div>
+
+    <h2>🔥 Sonia's Priority List</h2>
+
+    <div id="priorityList"></div>
+
+  </div>
+
+  <div id="staffHome" class="hidden">
+
+    <div class="ownerHero">
+      <div class="tiny">Staff Hub</div>
+      <h1>Welcome 👋</h1>
+      <p>Everything you need for today's shift.</p>
+    </div>
+
+    <div class="card">
+      <div class="siteTitle">Today's shift</div>
+      <div class="siteSub">Select your site and clock in when you arrive.</div>
+      <button class="btn primary" onclick="showPage('hours')">CLOCK IN / OUT</button>
+    </div>
+
+    <div class="card">
+      <div class="siteTitle">Something to report?</div>
+      <div class="siteSub">Send Sonia a site, client, supply or equipment update.</div>
+      <button class="btn dark" onclick="showPage('report')">+ NEW REPORT</button>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- SITES -->
+<section id="sites" class="page">
+
+  <h2>Sites</h2>
+
+  <div class="card">
+    <div class="siteTitle">North Lakes Office</div>
+    <div class="siteSub">Commercial Office • Evening Clean</div>
+  </div>
+
+  <div class="card">
+    <div class="siteTitle">Brendale Warehouse</div>
+    <div class="siteSub">Warehouse • Mon / Wed / Fri</div>
+  </div>
+
+  <div class="card">
+    <div class="siteTitle">Albany Creek Medical</div>
+    <div class="siteSub">Medical • Daily Clean</div>
+  </div>
+
+  <button class="btn outline" onclick="addSite()">+ Add site</button>
+
+  <div id="extraSites"></div>
+
+</section>
+
+
+<!-- REPORT -->
+<section id="report" class="page">
+
+  <h2>New Report</h2>
+
+  <div class="card">
+
+    <label>Your name</label>
+    <input id="staffName" placeholder="e.g. Sarah">
+
+    <label>Site</label>
+    <select id="reportSite">
+      <option>North Lakes Office</option>
+      <option>Brendale Warehouse</option>
+      <option>Albany Creek Medical</option>
+      <option>Other</option>
+    </select>
+
+    <label>Report type</label>
+    <select id="reportType">
+      <option>Site issue</option>
+      <option>Client request</option>
+      <option>Equipment problem</option>
+      <option>Supplies</option>
+      <option>Safety issue</option>
+      <option>Staffing</option>
+      <option>General note</option>
+    </select>
+
+    <label>What happened?</label>
+    <textarea id="reportText"
+      placeholder="Tell Sonia what she needs to know..."></textarea>
+
+    <label>Photo</label>
+    <input id="photoInput"
+      type="file"
+      accept="image/*"
+      capture="environment"
+      onchange="previewPhoto(event)">
+
+    <img id="photoPreview" class="photoPreview">
+
+    <label>Priority</label>
+
+    <div class="priorityChoice">
+      <button class="pChoice selected"
+        data-level="info"
+        onclick="choosePriority(this)">NORMAL</button>
+
+      <button class="pChoice"
+        data-level="important"
+        onclick="choosePriority(this)">IMPORTANT</button>
+
+      <button class="pChoice"
+        data-level="urgent"
+        onclick="choosePriority(this)">🚨 URGENT</button>
+    </div>
+
+    <label>
+      <input id="ownerFlag" type="checkbox"
+      style="width:auto;margin-right:7px">
+      Flag specifically for Sonia's attention
+    </label>
+
+    <button class="btn primary"
+      onclick="submitReport()">SEND REPORT</button>
+
+  </div>
+
+</section>
+
+
+<!-- HOURS -->
+<section id="hours" class="page">
+
+  <h2>Work Hours</h2>
+
+  <div class="card clockBox">
+
+    <div class="meta">CURRENT TIME</div>
+    <div id="liveTime" class="time">--:--</div>
+
+    <label>Employee</label>
+    <input id="clockName" placeholder="Your name">
+
+    <label>Site</label>
+    <select id="clockSite">
+      <option>North Lakes Office</option>
+      <option>Brendale Warehouse</option>
+      <option>Albany Creek Medical</option>
+    </select>
+
+    <button id="clockBtn"
+      class="clockButton"
+      onclick="toggleClock()">CLOCK IN</button>
+
+    <div id="clockStatus" class="meta">
+      You are currently clocked out.
+    </div>
+
+  </div>
+
+  <h2>Recent Hours</h2>
+  <div id="hoursList"></div>
+
+</section>
+
+
+<!-- MORE -->
+<section id="more" class="page">
+
+  <h2>More</h2>
+
+  <div class="card" onclick="showEquipment()">
+    <div class="siteTitle">🔧 Equipment</div>
+    <div class="siteSub">Report faults, damage or equipment requiring attention.</div>
+  </div>
+
+  <div class="card">
+    <div class="siteTitle">📅 Calendar & Site Log</div>
+    <div class="siteSub">Reports are automatically dated and stored in the activity history.</div>
+  </div>
+
+  <div class="card">
+    <div class="siteTitle">📋 Timesheets</div>
+    <div class="siteSub">Review hours recorded by staff.</div>
+  </div>
+
+  <div class="card">
+    <div class="siteTitle">✓ Resolved Items</div>
+    <div class="siteSub" id="resolvedText">0 resolved items</div>
+  </div>
+
+  <div class="card">
+    <div class="siteTitle">CLEARSA Staff Hub</div>
+    <div class="siteSub">Prototype V1 • Clear Corporate Solutions Australia</div>
+  </div>
+
+</section>
+
+
+<!-- NAV -->
+<nav class="nav">
+
+  <button class="navBtn active"
+    data-page="home"
+    onclick="showPage('home',this)">
+    <span class="ico">⌂</span>
+    HOME
+  </button>
+
+  <button class="navBtn"
+    data-page="sites"
+    onclick="showPage('sites',this)">
+    <span class="ico">▦</span>
+    SITES
+  </button>
+
+  <button class="navBtn"
+    data-page="report"
+    onclick="showPage('report',this)">
+    <span class="plus">+</span>
+    REPORT
+  </button>
+
+  <button class="navBtn"
+    data-page="hours"
+    onclick="showPage('hours',this)">
+    <span class="ico">◷</span>
+    HOURS
+  </button>
+
+  <button class="navBtn"
+    data-page="more"
+    onclick="showPage('more',this)">
+    <span class="ico">•••</span>
+    MORE
+  </button>
+
+</nav>
+
+</div>
+
+
+<script>
+
+/* STORAGE */
+
+let reports =
+JSON.parse(localStorage.getItem("clearsa_reports") || "[]");
+
+let hours =
+JSON.parse(localStorage.getItem("clearsa_hours") || "[]");
+
+let resolved =
+JSON.parse(localStorage.getItem("clearsa_resolved") || "[]");
+
+let selectedPriority = "info";
+
+let clockedIn =
+JSON.parse(localStorage.getItem("clearsa_clock") || "null");
+
+
+/* DATE */
+
+document.getElementById("dateText").textContent =
+new Date().toLocaleDateString("en-AU",{
+  weekday:"long",
+  day:"numeric",
+  month:"long"
+});
+
+
+/* NAVIGATION */
+
+function showPage(id,button){
+
+  document.querySelectorAll(".page")
+    .forEach(p=>p.classList.remove("active"));
+
+  document.getElementById(id)
+    .classList.add("active");
+
+  document.querySelectorAll(".navBtn")
+    .forEach(b=>b.classList.remove("active"));
+
+  let target =
+    button ||
+    document.querySelector('.navBtn[data-page="'+id+'"]');
+
+  if(target) target.classList.add("active");
+
+  window.scrollTo(0,0);
+
+  renderAll();
+}
+
+
+/* OWNER / STAFF */
+
+function setMode(mode){
+
+  let owner =
+    document.getElementById("ownerHome");
+
+  let staff =
+    document.getElementById("staffHome");
+
+  if(mode==="owner"){
+
+    owner.classList.remove("hidden");
+    staff.classList.add("hidden");
+
+    ownerModeBtn.classList.add("on");
+    staffModeBtn.classList.remove("on");
+
+  }else{
+
+    owner.classList.add("hidden");
+    staff.classList.remove("hidden");
+
+    staffModeBtn.classList.add("on");
+    ownerModeBtn.classList.remove("on");
+  }
+}
+
+
+/* PRIORITY */
+
+function choosePriority(btn){
+
+  document.querySelectorAll(".pChoice")
+    .forEach(b=>b.classList.remove("selected"));
+
+  btn.classList.add("selected");
+
+  selectedPriority =
+    btn.dataset.level;
+}
+
+
+/* PHOTO PREVIEW */
+
+function previewPhoto(e){
+
+  const file=e.target.files[0];
+
+  if(!file) return;
+
+  const reader=new FileReader();
+
+  reader.onload=function(){
+
+    const img =
+      document.getElementById("photoPreview");
+
+    img.src=reader.result;
+    img.style.display="block";
+  };
+
+  reader.readAsDataURL(file);
+}
+
+
+/* REPORT */
+
+function submitReport(){
+
+  const name =
+    document.getElementById("staffName")
+    .value.trim() || "Staff member";
+
+  const site =
+    document.getElementById("reportSite").value;
+
+  const type =
+    document.getElementById("reportType").value;
+
+  const text =
+    document.getElementById("reportText")
+    .value.trim();
+
+  const owner =
+    document.getElementById("ownerFlag").checked;
+
+  if(!text){
+    alert("Please add a short description.");
+    return;
+  }
+
+  let priority=selectedPriority;
+
+  /*
+    AUTOMATIC PRIORITY ENGINE
+    Certain report types are escalated
+    even if the employee forgets.
+  */
+
+  if(type==="Safety issue"){
+    priority="urgent";
+  }
+
+  if(
+    type==="Equipment problem" &&
+    priority==="info"
+  ){
+    priority="important";
+  }
+
+  if(
+    type==="Client request" &&
+    priority==="info"
+  ){
+    priority="important";
+  }
+
+  const urgentWords=[
+    "injury",
+    "danger",
+    "unsafe",
+    "locked out",
+    "can't access",
+    "cannot access",
+    "broken",
+    "accident",
+    "emergency"
+  ];
+
+  const lower=text.toLowerCase();
+
+  if(
+    urgentWords.some(word=>lower.includes(word))
+  ){
+    priority="urgent";
+  }
+
+  reports.unshift({
+    id:Date.now(),
+    name,
+    site,
+    type,
+    text,
+    priority,
+    owner,
+    date:new Date().toISOString()
+  });
+
+  localStorage.setItem(
+    "clearsa_reports",
+    JSON.stringify(reports)
+  );
+
+  document.getElementById("reportText").value="";
+  document.getElementById("ownerFlag").checked=false;
+  document.getElementById("photoInput").value="";
+  document.getElementById("photoPreview").style.display="none";
+
+  alert("Report sent to CLEARSA ✓");
+
+  showPage("home");
+}
+
+
+/* PRIORITY LIST */
+
+function renderPriorities(){
+
+  const box =
+    document.getElementById("priorityList");
+
+  const order={
+    urgent:1,
+    important:2,
+    action:3,
+    info:4
+  };
+
+  let list=[...reports]
+    .sort((a,b)=>
+      order[a.priority]-order[b.priority]
+    );
+
+  if(!list.length){
+
+    box.innerHTML=`
+      <div class="card empty">
+        ✓ Nothing needs Sonia's attention.
+        <br><br>
+        That's the kind of dashboard we like.
+      </div>
+    `;
+
+    return;
+  }
+
+  box.innerHTML=list.map(r=>{
+
+    const label =
+      r.priority==="urgent"
+      ? "🚨 URGENT"
+      : r.priority==="important"
+      ? "IMPORTANT"
+      : r.priority==="action"
+      ? "ACTION"
+      : "INFO";
+
+    return `
+      <div class="card priority ${r.priority}">
+
+        <div class="dot"></div>
+
+        <div class="priorityText">
+
+          <div class="priorityTitle">
+            ${escapeHTML(r.type)}
+          </div>
+
+          <div>
+            ${escapeHTML(r.text)}
+          </div>
+
+          <div class="meta">
+            ${escapeHTML(r.site)}
+            • ${escapeHTML(r.name)}
+            • ${formatDate(r.date)}
+          </div>
+
+          <span class="badge ${r.priority}">
+            ${label}
+          </span>
+
+          ${r.owner
+            ? '<span class="badge important">★ FOR SONIA</span>'
+            : ''
+          }
+
+          <br>
+
+          <button
+            class="btn resolve"
+            onclick="resolveItem(${r.id})">
+            ✓ RESOLVE
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+}
+
+
+function resolveItem(id){
+
+  const item=
+    reports.find(r=>r.id===id);
+
+  if(item){
+    resolved.unshift({
+      ...item,
+      resolvedDate:new Date().toISOString()
+    });
+  }
+
+  reports=
+    reports.filter(r=>r.id!==id);
+
+  localStorage.setItem(
+    "clearsa_reports",
+    JSON.stringify(reports)
+  );
+
+  localStorage.setItem(
+    "clearsa_resolved",
+    JSON.stringify(resolved)
+  );
+
+  renderAll();
+}
+
+
+/* CLOCK */
+
+function updateTime(){
+
+  document.getElementById("liveTime")
+    .textContent=
+    new Date().toLocaleTimeString(
+      "en-AU",
+      {
+        hour:"2-digit",
+        minute:"2-digit"
+      }
+    );
+}
+
+setInterval(updateTime,1000);
+updateTime();
+
+
+function toggleClock(){
+
+  const btn =
+    document.getElementById("clockBtn");
+
+  const status =
+    document.getElementById("clockStatus");
+
+  if(!clockedIn){
+
+    const name =
+      document.getElementById("clockName")
+      .value.trim();
+
+    if(!name){
+      alert("Please enter your name first.");
+      return;
+    }
+
+    clockedIn={
+      name,
+      site:document.getElementById("clockSite").value,
+      start:new Date().toISOString()
+    };
+
+    localStorage.setItem(
+      "clearsa_clock",
+      JSON.stringify(clockedIn)
+    );
+
+  }else{
+
+    const end=new Date();
+
+    const start=
+      new Date(clockedIn.start);
+
+    const total=
+      (end-start)/3600000;
+
+    hours.unshift({
+      id:Date.now(),
+      name:clockedIn.name,
+      site:clockedIn.site,
+      start:clockedIn.start,
+      end:end.toISOString(),
+      hours:Number(total.toFixed(2))
+    });
+
+    localStorage.setItem(
+      "clearsa_hours",
+      JSON.stringify(hours)
+    );
+
+    clockedIn=null;
+
+    localStorage.removeItem(
+      "clearsa_clock"
+    );
+  }
+
+  renderAll();
+}
+
+
+function renderClock(){
+
+  const btn =
+    document.getElementById("clockBtn");
+
+  const status =
+    document.getElementById("clockStatus");
+
+  if(clockedIn){
+
+    btn.textContent="CLOCK OUT";
+    btn.classList.add("out");
+
+    status.textContent=
+      "Clocked in at "+
+      new Date(clockedIn.start)
+      .toLocaleTimeString(
+        "en-AU",
+        {
+          hour:"2-digit",
+          minute:"2-digit"
+        }
+      )+
+      " • "+clockedIn.site;
+
+  }else{
+
+    btn.textContent="CLOCK IN";
+    btn.classList.remove("out");
+
+    status.textContent=
+      "You are currently clocked out.";
+  }
+}
+
+
+/* HOURS */
+
+function renderHours(){
+
+  const box =
+    document.getElementById("hoursList");
+
+  if(!hours.length){
+
+    box.innerHTML=`
+      <div class="card empty">
+        No completed shifts yet.
+      </div>
+    `;
+
+    return;
+  }
+
+  box.innerHTML=
+    hours.map(h=>`
+
+      <div class="card">
+
+        <div class="siteTitle">
+          ${escapeHTML(h.name)}
+        </div>
+
+        <div class="siteSub">
+          ${escapeHTML(h.site)}
+        </div>
+
+        <div style="
+          display:flex;
+          justify-content:space-between;
+          margin-top:12px;
+        ">
+
+          <span>
+            ${formatDate(h.start)}
+          </span>
+
+          <strong>
+            ${h.hours} hrs
+          </strong>
+
+        </div>
+
+      </div>
+
+    `).join("");
+}
+
+
+/* EQUIPMENT */
+
+function showEquipment(){
+
+  showPage("report");
+
+  document.getElementById("reportType")
+    .value="Equipment problem";
+
+  document.getElementById("reportText")
+    .focus();
+}
+
+
+/* ADD SITE */
+
+function addSite(){
+
+  const name=
+    prompt("Site name");
+
+  if(!name) return;
+
+  const div=
+    document.createElement("div");
+
+  div.className="card";
+
+  div.innerHTML=`
+    <div class="siteTitle">
+      ${escapeHTML(name)}
+    </div>
+    <div class="siteSub">
+      Commercial cleaning site
+    </div>
+  `;
+
+  document.getElementById("extraSites")
+    .appendChild(div);
+}
+
+
+/* HELPERS */
+
+function formatDate(date){
+
+  return new Date(date)
+    .toLocaleDateString(
+      "en-AU",
+      {
+        day:"numeric",
+        month:"short",
+        hour:"2-digit",
+        minute:"2-digit"
+      }
+    );
+}
+
+
+function escapeHTML(str){
+
+  return String(str)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+
+/* DASHBOARD */
+
+function renderAll(){
+
+  renderPriorities();
+  renderClock();
+  renderHours();
+
+  const urgent=
+    reports.filter(
+      r=>r.priority==="urgent"
+    ).length;
+
+  document.getElementById("urgentCount")
+    .textContent=urgent;
+
+  document.getElementById("openCount")
+    .textContent=reports.length;
+
+  document.getElementById("reportCount")
+    .textContent=reports.length;
+
+  const totalHours=
+    hours.reduce(
+      (sum,h)=>sum+h.hours,
+      0
+    );
+
+  document.getElementById("hoursCount")
+    .textContent=totalHours.toFixed(1);
+
+  document.getElementById("resolvedText")
+    .textContent=
+    resolved.length+" resolved items";
+}
+
+
+renderAll();
+
+</script>
+
+</body>
+  </html>
